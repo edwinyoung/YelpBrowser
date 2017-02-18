@@ -12,6 +12,8 @@ class BusinessesViewController: UIViewController {
 	
 	var businesses: [Business]!
 	
+	@IBOutlet weak var tableView: UITableView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
