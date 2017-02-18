@@ -11,13 +11,14 @@ import UIKit
 class BusinessCell: UITableViewCell {
 	
 	
-	@IBOutlet weak var businessImage: UIView!
+	@IBOutlet weak var businessImage: UIImageView!
 	@IBOutlet weak var businessNameLabel: UILabel!
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var ratingImage: UIImageView!
 	@IBOutlet weak var reviewCountLabel: UILabel!
 	@IBOutlet weak var addressLabel: UILabel!
 	@IBOutlet weak var categoryLabel: UILabel!
+	
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()

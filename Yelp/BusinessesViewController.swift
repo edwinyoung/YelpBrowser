@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController {
+class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	var businesses: [Business]!
 	
@@ -17,15 +17,19 @@ class BusinessesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.tableView.delegate = self
+		self.tableView.dataSource = self
+		
 		Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
 			
 			self.businesses = businesses
-			if let businesses = businesses {
-				for business in businesses {
-					print(business.name!)
-					print(business.address!)
-				}
-			}
+//			if let businesses = businesses {
+//				for business in businesses {
+//					print(business.name!)
+//					print(business.address!)
+//				}
+//			}
+			self.tableView.reloadData()
 			
 		}
 		)
@@ -46,6 +50,37 @@ class BusinessesViewController: UIViewController {
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if self.businesses != nil {
+			return self.businesses.count
+		} else {
+			return 0
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
+		
+		let business = businesses![indexPath.row]
+		
+		cell.businessNameLabel.text = business.name
+		cell.distanceLabel.text = business.distance
+		cell.addressLabel.text = business.address
+		print(business.reviewCount!)
+		if business.reviewCount != nil && business.reviewCount > 0 {
+			cell.reviewCountLabel.text = String(describing: business.reviewCount!) + " Reviews"
+		} else {
+			cell.reviewCountLabel.text = "No Reviews"
+		}
+		cell.categoryLabel.text = business.categories
+		cell.ratingImage.setImageWith(business.ratingImageURL!)
+		cell.businessImage.setImageWith(business.imageURL!)
+		
+		return cell
+		
 	}
 	
 	/*

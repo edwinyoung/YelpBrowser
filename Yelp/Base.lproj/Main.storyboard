@@ -80,7 +80,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="dcf-54-2g4" id="GYi-9D-15V"/>
-                                            <outlet property="businessImage" destination="mBb-3a-MD0" id="C9c-wd-9jp"/>
+                                            <outlet property="businessImage" destination="13j-Cu-iEI" id="E7q-IS-6HV"/>
                                             <outlet property="businessNameLabel" destination="iO8-Go-h8J" id="OA8-7z-xwz"/>
                                             <outlet property="categoryLabel" destination="FCS-ko-Hm4" id="LUL-ph-8ur"/>
                                             <outlet property="distanceLabel" destination="imt-v4-c4I" id="ClO-f7-qfE"/>
