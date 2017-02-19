@@ -19,6 +19,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
+		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.tableView.estimatedRowHeight = 110
 		
 		Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
 			
@@ -69,8 +71,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
 		cell.businessNameLabel.text = business.name
 		cell.distanceLabel.text = business.distance
 		cell.addressLabel.text = business.address
-		print(business.reviewCount!)
-		if business.reviewCount != nil && business.reviewCount > 0 {
+		if business.reviewCount != nil && business.reviewCount as! Int > 0 {
 			cell.reviewCountLabel.text = String(describing: business.reviewCount!) + " Reviews"
 		} else {
 			cell.reviewCountLabel.text = "No Reviews"
