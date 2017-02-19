@@ -27,13 +27,10 @@ class BusinessCell: UITableViewCell {
 		businessImage.layer.cornerRadius = 3
 		businessImage.clipsToBounds = true
 		
-		businessNameLabel.preferredMaxLayoutWidth = businessNameLabel.frame.size.width
 	}
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		
-		businessNameLabel.preferredMaxLayoutWidth = businessNameLabel.frame.size.width
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
