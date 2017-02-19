@@ -19,6 +19,11 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Set navigation bar to Yelp red & white text
+		let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+		self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : Any] // should work but doesn't change UISearchBar's blue text
+		self.navigationController!.navigationBar.barTintColor = UIColor(red: 196 / 255.0, green: 18 / 255.0, blue: 0 / 255.0, alpha: 1);
+		
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
 		self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -26,13 +31,16 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		// Initialize the UISearchBar
 		self.searchBar = UISearchBar()
+		self.searchBar.placeholder = "Search"
 		self.searchBar.delegate = self
 		
 		// Add SearchBar to the NavigationBar
 		self.searchBar.sizeToFit()
 		self.navigationItem.titleView = searchBar
 		
+		// Initialize the view with a search for Thai restaurants
 		self.search(for: "Thai")
+		searchBar.text = "Thai"
 		
 		/* Example of Yelp search with more search options specified
 		Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
